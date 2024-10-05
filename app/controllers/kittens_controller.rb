@@ -14,8 +14,10 @@ class KittensController < ApplicationController
   def create
     @kitten = Kitten.new(kitten_params)
     if @kitten.save
+      flash[:success] = "Kitten created successfully"
       redirect_to @kitten
     else
+      flash.now[:error] = @kitten.errors.fullmessage
       render :new, :unprocessable_entity
     end
   end
@@ -33,7 +35,7 @@ class KittensController < ApplicationController
     end
   end
 
-  def delete
+  def destroy
     @kitten = Kitten.find(params[:id])
     @kitten.destroy
 

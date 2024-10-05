@@ -1,4 +1,11 @@
+<%= link_to 'Create a kitten', new_kitten_path%>
 <h2>List of Kittens</h2>
-<% @kittens.each do |kitten| %>
-    <div><%= kitten.name%></div>
-<% end %>
+<div>
+    <% @kittens.each do |kitten| %>
+        <div>Kitten name: <%= kitten.name%></div>
+        <div>Kitten age: <%= kitten.age%></div>
+        <div><%= link_to "Delete", kitten_path(kitten), data: {
+                    turbo_method: :delete}%></div>
+    <% end %>
+    <br>
+</div>
